@@ -1,3 +1,3 @@
-function showAlert() {
-  alert("🎉 Great job! You’ve just added interactivity with JavaScript.");
+function showMessage() {
+  alert("🎊 Congratulations! You just used JavaScript!");
 }
