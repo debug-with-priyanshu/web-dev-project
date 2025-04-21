@@ -1,4 +1,4 @@
-// Form Validation
+// Contact Form Submission
 document.getElementById("contactForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -8,39 +8,55 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
   const status = document.getElementById("formStatus");
 
   if (!name || !email || !message) {
-    status.textContent = "All fields are required.";
+    status.textContent = "Please fill in all fields.";
     status.style.color = "red";
     return;
   }
 
-  const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-  if (!email.match(emailPattern)) {
-    status.textContent = "Enter a valid email.";
-    status.style.color = "red";
-    return;
-  }
+  // Simulate async form submission
+  status.textContent = "Sending...";
+  status.style.color = "#00796b";
 
-  status.textContent = "Form submitted successfully!";
-  status.style.color = "green";
-  document.getElementById("contactForm").reset();
+  setTimeout(() => {
+    status.textContent = "Message sent successfully!";
+    status.style.color = "#00796b";
+    document.getElementById("contactForm").reset();
+
+    setTimeout(() => {
+      status.textContent = "";
+    }, 3000);
+  }, 1000);
 });
 
 // To-Do List
-function addTask() {
-  const taskInput = document.getElementById("taskInput");
+const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskList = document.getElementById("taskList");
+
+addTaskBtn.addEventListener("click", () => {
   const taskText = taskInput.value.trim();
 
-  if (taskText === "") return;
+  if (!taskText) {
+    taskInput.focus();
+    return;
+  }
 
   const li = document.createElement("li");
-  li.textContent = taskText;
+  const span = document.createElement("span");
+  span.textContent = taskText;
 
-  const removeBtn = document.createElement("button");
-  removeBtn.textContent = "X";
-  removeBtn.onclick = () => li.remove();
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
 
-  li.appendChild(removeBtn);
-  document.getElementById("taskList").appendChild(li);
+  deleteBtn.addEventListener("click", () => {
+    li.classList.add("fade-out");
+    setTimeout(() => li.remove(), 300);
+  });
+
+  li.appendChild(span);
+  li.appendChild(deleteBtn);
+  taskList.appendChild(li);
 
   taskInput.value = "";
-}
+  taskInput.focus();
+});
