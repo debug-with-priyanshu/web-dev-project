@@ -1,60 +1,98 @@
+:root {
+  --bg: #f0f4f8;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --accent: #0066ff;
+  --accent-dark: #004dcc;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --radius: 16px;
+  --text-color: #1a1a1a;
+  --input-bg: rgba(255, 255, 255, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  background: #e0f7fa;
-  color: #333;
+  background: var(--bg);
+  color: var(--text-color);
+  min-height: 100vh;
+  padding: 2rem;
+  background-image: linear-gradient(to top left, #dbeafe, #f0f4f8);
 }
 
 .container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1rem;
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: #006064;
+  font-size: 2.5rem;
+  color: var(--accent-dark);
+  margin-bottom: 1rem;
 }
 
 .card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   padding: 2rem;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-input, textarea, button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 2px solid #b2ebf2;
-  border-radius: 8px;
-  outline: none;
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+/* Inputs & Buttons */
+input,
+textarea,
+button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 10px;
   font-size: 1rem;
-  transition: 0.2s ease;
+  font-family: inherit;
+  margin-top: 10px;
+  transition: 0.3s ease;
+}
+
+input,
+textarea {
+  width: 100%;
+  background: var(--input-bg);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 button {
-  background-color: #00796b;
+  background-color: var(--accent);
   color: #fff;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 button:hover {
-  background-color: #004d40;
+  background-color: var(--accent-dark);
 }
 
-textarea {
-  resize: vertical;
-}
-
+/* To-Do */
 .todo-controls {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
@@ -64,32 +102,35 @@ textarea {
 
 .todo-list {
   list-style: none;
-  padding: 0;
-  margin-top: 15px;
+  margin-top: 1rem;
+  padding-left: 0;
 }
 
 .todo-list li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: #e0f2f1;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
+  background: #e3f2fd;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
   animation: fadeIn 0.4s ease;
 }
 
-.todo-list button {
-  background: #e53935;
-  padding: 6px 12px;
-  border-radius: 6px;
+.todo-list li button {
+  background: #ef5350;
+  color: #fff;
+  font-size: 0.85rem;
 }
 
+.todo-list li button:hover {
+  background: #c62828;
+}
+
+/* Gallery */
 .gallery-controls {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 10px;
 }
 
 .gallery-controls input {
@@ -97,20 +138,24 @@ textarea {
 }
 
 .gallery {
+  margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
 }
 
 .gallery img {
   width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-  transition: 0.3s ease;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .fade-out {
@@ -119,6 +164,7 @@ textarea {
   transition: all 0.3s ease;
 }
 
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
