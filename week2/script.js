@@ -1,4 +1,4 @@
-// Contact Form Submission
+// Contact Form
 document.getElementById("contactForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -13,14 +13,13 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     return;
   }
 
-  // Simulate async form submission
   status.textContent = "Sending...";
   status.style.color = "#00796b";
 
   setTimeout(() => {
     status.textContent = "Message sent successfully!";
     status.style.color = "#00796b";
-    document.getElementById("contactForm").reset();
+    this.reset();
 
     setTimeout(() => {
       status.textContent = "";
@@ -35,11 +34,7 @@ const taskList = document.getElementById("taskList");
 
 addTaskBtn.addEventListener("click", () => {
   const taskText = taskInput.value.trim();
-
-  if (!taskText) {
-    taskInput.focus();
-    return;
-  }
+  if (!taskText) return;
 
   const li = document.createElement("li");
   const span = document.createElement("span");
@@ -47,7 +42,6 @@ addTaskBtn.addEventListener("click", () => {
 
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
-
   deleteBtn.addEventListener("click", () => {
     li.classList.add("fade-out");
     setTimeout(() => li.remove(), 300);
@@ -59,4 +53,26 @@ addTaskBtn.addEventListener("click", () => {
 
   taskInput.value = "";
   taskInput.focus();
+});
+
+// Image Gallery
+const addImgBtn = document.getElementById("addImgBtn");
+const imgUrlInput = document.getElementById("imgUrl");
+const imageGallery = document.getElementById("imageGallery");
+
+addImgBtn.addEventListener("click", () => {
+  const url = imgUrlInput.value.trim();
+  if (!url) return;
+
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "Gallery Image";
+
+  img.addEventListener("click", () => {
+    img.classList.add("fade-out");
+    setTimeout(() => img.remove(), 300);
+  });
+
+  imageGallery.appendChild(img);
+  imgUrlInput.value = "";
 });
