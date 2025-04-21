@@ -6,94 +6,204 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  background: #f5f5f5;
+  background: linear-gradient(120deg, #f0f4f8, #d9e2ec);
   color: #333;
   padding: 20px;
+  animation: fadeIn 1s ease-in;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Header */
 header {
-  background: teal;
+  background: #00bfa5;
   color: white;
-  padding: 10px 20px;
+  padding: 20px;
+  border-radius: 10px;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.8s ease;
+}
+
+header nav {
+  margin-top: 10px;
 }
 
 header nav a {
   color: white;
   margin: 0 10px;
   text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
+header nav a:hover {
+  color: #ffe082;
+}
+
+/* Layout Grid */
 .grid-container {
   display: grid;
   gap: 20px;
-  grid-template-columns: 1fr 1fr;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin-top: 30px;
+  animation: fadeIn 1s ease-in;
 }
 
+/* Card Component */
 .card {
   background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.5s ease-in;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Styling */
 form input, form textarea {
   width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+  border-color: #00bfa5;
+  box-shadow: 0 0 5px rgba(0, 191, 165, 0.5);
+  outline: none;
 }
 
 form button {
-  background: teal;
+  background: #00bfa5;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+  background: #00796b;
+  transform: scale(1.05);
+}
+
+#formStatus {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #00796b;
+}
+
+/* To-do Section */
+#taskInput {
+  padding: 10px;
+  width: 80%;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+#taskInput:focus {
+  border-color: #00bfa5;
+  outline: none;
+}
+
+#todo button {
+  background: #00796b;
   color: white;
   padding: 10px 15px;
   border: none;
+  margin-left: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
-#taskInput {
-  padding: 8px;
-  width: 80%;
-  border: 1px solid #aaa;
-  border-radius: 5px;
+#todo button:hover {
+  background: #004d40;
 }
 
 #taskList {
   list-style-type: none;
-  margin-top: 10px;
+  margin-top: 15px;
+  padding-left: 0;
 }
 
 #taskList li {
-  padding: 5px;
-  background: #eee;
-  margin-bottom: 5px;
-  border-radius: 5px;
+  padding: 10px;
+  background: #e0f2f1;
+  margin-bottom: 8px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  animation: popIn 0.4s ease;
 }
 
-#taskList button {
-  background: red;
+#taskList li span {
+  flex-grow: 1;
+}
+
+#taskList li button {
+  background: #ef5350;
   color: white;
   border: none;
-  border-radius: 3px;
-  padding: 2px 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-footer {
-  text-align: center;
-  margin-top: 40px;
+#taskList li button:hover {
+  background: #c62828;
 }
 
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: 1fr;
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  header {
+    font-size: 14px;
   }
+
+  form button, #todo button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  #taskInput {
+    width: 100%;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}
+.fade-out {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease;
 }
