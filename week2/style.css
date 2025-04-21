@@ -1,177 +1,109 @@
-:root {
-  --bg: #f0f4f8;
-  --card-bg: rgba(255, 255, 255, 0.6);
-  --accent: #0066ff;
-  --accent-dark: #004dcc;
-  --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  --radius: 16px;
-  --text-color: #1a1a1a;
-  --input-bg: rgba(255, 255, 255, 0.8);
-}
-
+/* Reset + Base Styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
   font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--text-color);
-  min-height: 100vh;
-  padding: 2rem;
-  background-image: linear-gradient(to top left, #dbeafe, #f0f4f8);
 }
-
+body {
+  background: linear-gradient(to bottom right, #141e30, #243b55);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header, footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #0f172a;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 .container {
-  max-width: 1000px;
-  margin: auto;
+  flex: 1;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-
-h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  color: var(--accent-dark);
-  margin-bottom: 1rem;
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
-
 .card {
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 2rem;
-  transition: transform 0.3s ease;
+  background-color: #1e293b;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
-
-.card h2 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: var(--accent);
+.square {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
 }
-
-/* Inputs & Buttons */
-input,
-textarea,
-button {
-  padding: 0.8rem 1rem;
+input, textarea, button {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
   border: none;
   border-radius: 10px;
+  outline: none;
   font-size: 1rem;
-  font-family: inherit;
-  margin-top: 10px;
-  transition: 0.3s ease;
 }
-
-input,
-textarea {
-  width: 100%;
-  background: var(--input-bg);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
 button {
-  background-color: var(--accent);
-  color: #fff;
+  background-color: #3b82f6;
+  color: white;
   cursor: pointer;
-  font-weight: 600;
+  transition: background-color 0.3s;
 }
-
 button:hover {
-  background-color: var(--accent-dark);
+  background-color: #2563eb;
 }
-
-/* To-Do */
-.todo-controls {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.todo-controls input {
-  flex: 1;
-}
-
-.todo-list {
+#todoList {
   list-style: none;
   margin-top: 1rem;
-  padding-left: 0;
 }
-
-.todo-list li {
-  display: flex;
-  justify-content: space-between;
-  background: #e3f2fd;
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
-  margin-bottom: 0.6rem;
-  animation: fadeIn 0.4s ease;
+#todoList li {
+  background: #334155;
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  animation: fadeIn 0.4s ease forwards;
 }
-
-.todo-list li button {
-  background: #ef5350;
-  color: #fff;
-  font-size: 0.85rem;
-}
-
-.todo-list li button:hover {
-  background: #c62828;
-}
-
-/* Gallery */
 .gallery-controls {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
-
-.gallery-controls input {
-  flex: 1;
-}
-
-.gallery {
-  margin-top: 1rem;
+#images {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
 }
-
-.gallery img {
+#images img {
   width: 100%;
-  height: auto;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  object-fit: cover;
+  height: 150px;
+  transition: transform 0.3s ease;
 }
-
-.gallery img:hover {
+#images img:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
-
-.fade-out {
-  opacity: 0;
-  transform: translateX(20px);
-  transition: all 0.3s ease;
-}
-
-/* Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 768px) {
+  .main-grid {
+    grid-template-columns: 1fr;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .square {
+    aspect-ratio: auto;
   }
 }
