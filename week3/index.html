@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Interactive Site</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Responsive Site with JS Interactivity</h1>
+  </header>
+
+  <div class="container">
+    <!-- Interactive Quiz -->
+    <section class="quiz">
+      <h2>Quiz: Test Your JavaScript Knowledge</h2>
+      <div class="question" id="question">Loading question...</div>
+      <div class="answers" id="answers"></div>
+      <div id="result"></div>
+    </section>
+
+    <!-- Joke Fetcher from External API -->
+    <section class="api-section">
+      <h2>Need a Laugh?</h2>
+      <button class="fetch-joke" onclick="fetchJoke()">Get Random Joke</button>
+      <div class="joke-box" id="jokeBox">Click above to get a joke 😄</div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
