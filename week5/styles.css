@@ -1,73 +1,101 @@
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #fdfdfd;
+    color: #333;
+}
+
 header {
-    background-color: #333;
+    background-color: #4a4e69;
     color: white;
     padding: 1rem 2rem;
 }
 
-header nav .logo {
-    font-size: 2rem;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
-header nav ul {
+nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
 }
 
-header nav ul li a {
+nav ul li a {
     color: white;
     text-decoration: none;
-}
-
-main {
-    padding: 20px;
+    font-weight: 600;
 }
 
 .hero {
-    background-color: #f4f4f4;
+    background: linear-gradient(to right, #e0c3fc, #8ec5fc);
     text-align: center;
-    padding: 2rem 0;
+    padding: 3rem 1rem;
+    color: #2d2d2d;
 }
 
 .products {
-    margin-top: 30px;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .product-list {
     display: flex;
-    gap: 20px;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
 }
 
 .product {
-    border: 1px solid #ccc;
-    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    width: 250px;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .product img {
     width: 100%;
-    height: auto;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.product h3 {
+    margin: 0.5rem 0;
 }
 
 .product button {
-    background-color: #28a745;
+    background-color: #198754;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .product button:hover {
-    background-color: #218838;
+    background-color: #157347;
 }
 
 .cart-modal {
@@ -76,18 +104,45 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
     display: none;
     justify-content: center;
     align-items: center;
+    animation: fadeIn 0.3s ease;
 }
 
 .cart-content {
     background-color: white;
     padding: 2rem;
-    width: 300px;
+    width: 350px;
+    border-radius: 8px;
+    animation: slideIn 0.3s ease;
 }
 
-#cart-items {
-    margin-bottom: 20px;
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #4a4e69;
+    color: white;
+    margin-top: 2rem;
 }
